@@ -1,0 +1,44 @@
+{
+  "name": "jaumecapdevila/php-sample-project",
+  "description": "A sample structure and configuration to bootstrap a simple PHP project using Slim as the underlying Framework",
+  "keywords": [
+    "project",
+    "php",
+    "slim"
+  ],
+  "homepage": "http://github.com/jaumecapdevila/php-sample-project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jaume Capdevila Pérez",
+      "email": "contact@jaumecapdevila.net",
+      "homepage": "https://jaumecapdevila.net/"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "slim/slim": "^3.1",
+    "monolog/monolog": "^1.17",
+    "slim/twig-view": "^2.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "SamplePhpProject\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SamplePhpProjectUnitTest\\": "tests/"
+    }
+  },
+  "config": {
+    "process-timeout": 0
+  },
+  "scripts": {
+    "start": "php -S localhost:8080 -t public public/index.php",
+    "test": "phpunit"
+  }
+}
