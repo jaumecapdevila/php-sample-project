@@ -1,18 +1,23 @@
-version: '2'
-
-volumes:
-    logs:
-        driver: local
+version: '3'
 
 services:
-    sample-app:
-        image: php:7-alpine
-        working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public public/index.php
-        environment:
-            docker: "true"
+    nginx:
+        build:
+            context: ./
+            dockerfile: ./docker/nginx/Dockerfile
+        depends_on:
+            - php-fpm
         ports:
-            - 8080:8080
+            - 8080:80
+        environment:
+            - NGINX_HOST=sample-app.dev
+            - NGINX_PORT=80
+            - FPM-PORT=9000
         volumes:
             - .:/var/www
-            - var/logs:/var/www/logs
+    php-fpm:
+        build:
+            context: ./
+            dockerfile: ./docker/php-fpm/Dockerfile
+        volumes:
+            - .:/var/www
