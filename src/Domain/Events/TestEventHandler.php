@@ -1,6 +1,6 @@
 <?php
 
-namespace SamplePhpProject\Infrastructure\Events;
+namespace SamplePhpProject\Domain\Events;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\Event;

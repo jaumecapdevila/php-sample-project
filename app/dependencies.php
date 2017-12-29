@@ -1,7 +1,7 @@
 <?php
 // DIC configuration
 
-use SamplePhpProject\Infrastructure\Events\TestEventHandler;
+use SamplePhpProject\Domain\Events\TestEventHandler;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use SamplePhpProject\Domain\Events\TestEvent;
 
