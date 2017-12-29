@@ -1,6 +1,10 @@
 <?php
 // DIC configuration
 
+use SamplePhpProject\Infrastructure\Events\TestEventHandler;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use SamplePhpProject\Domain\Events\TestEvent;
+
 $container = $app->getContainer();
 
 // Register Twig View helper
@@ -24,4 +28,12 @@ $container['logger'] = function ($c) {
     $logger->pushProcessor(new Monolog\Processor\UidProcessor());
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['log_file'], $settings['level']));
     return $logger;
+};
+
+// Symofny event dispatcher
+$container['dispatcher'] = function ($c) {
+    $dispatcher = new EventDispatcher();
+    // Register listeners
+    $dispatcher->addListener(TestEvent::NAME, array(new TestEventHandler($c['logger']), 'handle'));
+    return $dispatcher;
 };
